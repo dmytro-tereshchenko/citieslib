@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cities</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<div class="container">
+    <div class="mb-3 row p-1">
+        <form action="/create" class="col-sm-6">
+            <button type="submit" class="btn btn-outline-primary p-1 m-1">Create city</button>
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>People</th>
+            <th>Locations</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="city : ${cities}">
+            <td th:text="${city.id}"></td>
+            <td th:text="${city.name}"></td>
+            <td th:text="${city.people}"></td>
+            <td th:text="${city.locationx} + '; ' + ${city.locationy}"></td>
+            <td>
+                <div class="row">
+                    <form class="col-sm-6" action="/edit">
+                        <input hidden th:value="${city.id}" name="id">
+                        <button class="btn btn-sm btn-primary">Edit</button>
+                    </form>
+                    <form class="col-sm-6" action="/delete">
+                        <input hidden th:value="${city.id}" name="id">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table><br>
+    <div class="mb-3 row p-1">
+        <form action="/search" method="post" class="col card">
+            <div class="form-group">
+                <label for="name">Name of city</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Name for search">
+            </div>
+            <div class="form-group">
+                <label for="people">Minimum number of people</label>
+                <input type="number" name="people" id="people" value="0" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="history">Substring from history</label>
+                <input type="text" name="history" id="history" class="form-control" placeholder="Enter history for search">
+            </div>
+            <input type="submit" value="Search"  class="btn btn-outline-primary p-1">
+        </form>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Task 4</title>
+  <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div class="container">
+  <h1>Edit city</h1>
+  <form th:action="@{/edit}" th:object="${city}" method="post" class="col card p-3 mb-5">
+    <input type="hidden" th:field="*{id}" class="form-control"/>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" placeholder="Enter Name" required type="text" th:field="*{name}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="people">People number</label>
+      <input id="people" type="number" th:field="*{people}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="locationx">Location X: </label>
+      <input id="locationx" type="number" th:field="*{locationx}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="locationy">Location Y: </label>
+      <input id="locationy" type="number" th:field="*{locationy}" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="history">History: </label>
+      <textarea id="history" th:field="*{history}" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-primary p-1">Edit city</button>
+  </form>
+  <button class="btn btn-primary m-1 p-1" onclick="history.back()">Go Back</button>
+</div>
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>
